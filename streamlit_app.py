@@ -1,6 +1,6 @@
 # My first Streamlit app
 #cDo you want to develop a app with me?
-# RUN: streamlit run WMIP_explorer.py
+# RUN: streamlit run streamlit_app.py
 
 import streamlit as st
 import pandas as pd
