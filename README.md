@@ -1,7 +1,6 @@
-# Welcome to streamlit
+# Explore the QLD Gov's Water Data
 
-This is the app you get when you run `streamlit hello`, extracted as its own app.
+Data is made available from the [WMIP](https://water-monitoring.information.qld.gov.au/)  
+Care of The Queensland Government 2023 &copy;  
 
-Edit [Hello.py](./Hello.py) to customize this app to your heart's desire. ❤️
-
-Check it out on [Streamlit Community Cloud](https://st-hello-app.streamlit.app/)
+Simple app for learning Streamlit. But at the same time useful for quickly viewing water data using plotly.
