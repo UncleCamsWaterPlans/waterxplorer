@@ -1,6 +1,5 @@
-pandas
-datetime
-requests
-plotly
-matplotlib
-streamlit
+matplotlib==3.8.0
+pandas==2.1.4
+plotly==5.9.0
+Requests==2.31.0
+streamlit==1.29.0
