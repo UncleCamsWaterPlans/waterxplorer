@@ -24,7 +24,8 @@ def wmip_sites():
     x = r.json()
     df = pd.DataFrame(x['return'])
     df = pd.json_normalize(df['rows'])
-    df = df[df['stntype'] == 'GQ'].sort_values(by='station')
+    df = df[df['cease'] == 18991230]
+    df = df[df['stntype'].isin(['G', 'GQ'])].sort_values(by='station')
     # Convert 'latitude' and 'longitude' columns to numeric
     df['latitude'] = pd.to_numeric(df['latitude'], errors='coerce')
     df['longitude'] = pd.to_numeric(df['longitude'], errors='coerce')
@@ -37,7 +38,7 @@ site_list = wmip_sites()
 sitename = st.sidebar.selectbox(
     "Gauging Station:",
     options=site_list['stname'],
-    index=8
+    index=25
 )
 option = st.sidebar.selectbox(
     'Select Parameter:',
@@ -60,7 +61,7 @@ start_time = dt.strftime('%Y%m%d')
 end_time = datetime.datetime.now().strftime('%Y%m%d')
 
 
-#@st.cache_data
+@st.cache_data
 def wmip_hist(site, start_time, var, datasource = 'AT', end_time = datetime.datetime.now().strftime('%Y%m%d')):
     #translate var input into the HYdstra varfrom/varto format
     match var:
