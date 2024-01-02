@@ -1,6 +1,13 @@
-# My first Streamlit app
-#cDo you want to develop a app with me?
+#                _          __  __      _                     
+# __      ____ _| |_ ___ _ _\ \/ /_ __ | | ___  _ __ ___ _ __ 
+# \ \ /\ / / _` | __/ _ \ '__\  /| '_ \| |/ _ \| '__/ _ \ '__|
+#  \ V  V / (_| | ||  __/ |  /  \| |_) | | (_) | | |  __/ |   
+#   \_/\_/ \__,_|\__\___|_| /_/\_\ .__/|_|\___/|_|  \___|_|   
+#                                |_|                          
+# Author: Cameron Roberts
+
 # RUN: streamlit run streamlit_app.py
+# MacOS ctrl + C to close app from terminal
 
 import streamlit as st
 import pandas as pd
@@ -58,11 +65,18 @@ site = site_list.loc[site_list['stname'] == sitename, 'station'].values[0]
 print(site)
 param = option
 start_time = dt.strftime('%Y%m%d')
-end_time = datetime.datetime.now().strftime('%Y%m%d')
+
+# Get the current date
+current_date = datetime.datetime.now()
+# Add one day to the current date
+next_day = current_date + datetime.timedelta(days=1)
+# Format the date as YYYYMMDD
+end_time = next_day.strftime('%Y%m%d')
+#end_time = datetime.datetime.now().strftime('%Y%m%d')
 
 
 @st.cache_data
-def wmip_hist(site, start_time, var, datasource = 'AT', end_time = datetime.datetime.now().strftime('%Y%m%d')):
+def wmip_hist(site, start_time, var, datasource = 'AT', end_time = end_time):
     #translate var input into the HYdstra varfrom/varto format
     match var:
         case "level":
@@ -88,6 +102,7 @@ def wmip_hist(site, start_time, var, datasource = 'AT', end_time = datetime.date
 
 #data import
 df = wmip_hist(site= site, start_time= start_time, var= param)
+df = df[df['quality'] != 255]
 
 #st.line_chart(data= df, x= 'time',y= 'value')
 #plotly time series
